@@ -1,0 +1,29 @@
+[
+    {
+        "model": "customauth.customuser",
+        "pk": 1,
+        "fields": {
+            "email": "john@foo.com",
+            "username": "John Doe",
+            "password": "pbkdf2_sha256$120000$VhUgYDfAe51B$l5jDzRpT1qNuRlL8jm9dO6fXuYEomOmuHqWVuazBTVI=",
+            "last_login": null,
+            "is_active": true,
+            "is_superuser": false
+        }
+    },
+    {
+        "model": "customauth.customuser",
+        "pk": 2,
+        "fields": {
+            "email": "jane@foo.com",
+            "username": "Jane Doe",
+            "password": "pbkdf2_sha256$120000$FtxXsKThJHre$NC3PmhzCR0kstGX1jiDs6g4ab+lcchutJL3Y3K2uJd8=",
+            "last_login": null,
+            "is_active": true,
+            "is_superuser": false
+        }
+    }
+]
+
+
+

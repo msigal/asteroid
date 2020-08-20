@@ -1,0 +1,2 @@
+class NasaApiError(Exception):
+    pass

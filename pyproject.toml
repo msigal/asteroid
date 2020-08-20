@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "asteroid"
+version = "0.1"
+description = ""
+authors = ["sigal"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+django = "=2.2.5"
+django_select2 = "^7.4.2"
+djangorestframework = "=3.10.3"
+dj-inmemorystorage = "=2.1.0"
+psycopg2-binary = "=2.8.3"
+gunicorn = "=19.9.0"
+drf-yasg = "=1.17.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.1"
+pytest-django = "^3.5"
+pytest-mock = "=3.2.0"
+
+[build-system]
+requires = ["poetry>=1.0.2"]
+build-backend = "poetry.masonry.api"

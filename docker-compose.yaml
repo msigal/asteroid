@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:11.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: asteroid
+    volumes:
+      - "asteroid-data:/var/lib/postgresql/data"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 2s
+      retries: 1
+    ports:
+      - "5435:5432"
+
+  # Application
+  app:
+    image: app:latest
+    env_file:
+      - .env
+    volumes:
+      - "static:/app/static"
+      - ./uploaded-files:/app/uploaded-files
+    environment:
+      DB_PORT: 5432
+      DB_HOST: db
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        CURRENT_ENV: test
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    command: sh -c "
+      python3 ./manage.py collectstatic --noinput &&
+      python3 ./manage.py migrate &&
+      python3 ./manage.py loadnasa &&
+      gunicorn -c gunicorn_conf.py asteroid.wsgi
+      "
+
+volumes:
+  asteroid-data:
+  static:
